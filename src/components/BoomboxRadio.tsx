@@ -21,19 +21,17 @@ const SONGS = [
 ];
 
 const BoomboxRadio = () => {
-  const [isPlaying, setIsPlaying] = useState(() => {
-    let value = false;
-    setTimeout(() => {
-      value = true;
-    }, 1000);
-    return value;
-  });
+  const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(0);
   const [volume, setVolume] = useState(1);
   const [vuLeft, setVuLeft] = useState(0);
   const [vuRight, setVuRight] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const animFrameRef = useRef<number>(0);
+
+  useEffect(() => {
+    setTimeout(() => setIsPlaying(true), 1000);
+  }, []);
 
   useEffect(() => {
     if (audioRef.current) {
