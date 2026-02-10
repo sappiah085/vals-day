@@ -201,6 +201,7 @@
   padding: 8px;
   position: relative;
   transition: transform 0.3s ease;
+  @apply scale-90 md:scale-100;
 }
 
 .boombox-handle {
