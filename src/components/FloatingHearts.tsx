@@ -13,7 +13,7 @@ const emojis = ["❤️", "💕", "💖", "💗", "💘", "💝", "🌹", "✨",
 
 const FloatingHearts = () => {
   const hearts = useState<Heart[]>(() =>
-    Array.from({ length: 95 }, (_, i) => ({
+    Array.from({ length: 45 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
       size: 14 + Math.random() * 24,
