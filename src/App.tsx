@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import FloatingHearts from "./components/FloatingHearts";
 import RunawayButton from "./components/RunawayButton";
 import EasterEggs from "./components/EasterEggs";
