@@ -29,9 +29,6 @@ const BoomboxRadio = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const animFrameRef = useRef<number>(0);
 
-  useEffect(() => {
-    setTimeout(() => setIsPlaying(true), 1000);
-  }, []);
 
   useEffect(() => {
     if (audioRef.current) {
