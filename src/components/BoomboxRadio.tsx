@@ -29,7 +29,6 @@ const BoomboxRadio = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const animFrameRef = useRef<number>(0);
 
-
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
@@ -89,7 +88,9 @@ const BoomboxRadio = () => {
   };
 
   const prevSong = () => {
-    setCurrentSong((prev) => (prev - 1 + SONGS.length) % SONGS.length);
+    setCurrentSong(
+      (prev) => (Math.max(prev - 1, 0) + SONGS.length) % SONGS.length,
+    );
   };
 
   return (
