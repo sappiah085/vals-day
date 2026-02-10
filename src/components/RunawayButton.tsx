@@ -33,7 +33,6 @@ const RunawayButton = ({ onAttempt }: RunawayButtonProps) => {
   const [attempts, setAttempts] = useState(0);
   const [showMeme, setShowMeme] = useState<string | null>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const moveButton = useCallback(() => {
     if (!btnRef.current) return;
@@ -80,13 +79,13 @@ const RunawayButton = ({ onAttempt }: RunawayButtonProps) => {
   }, [attempts, moveButton, onAttempt]);
 
   return (
-    <div ref={containerRef}>
+    <div>
       <button
         ref={btnRef}
         onMouseEnter={() => {
           handleInteraction();
         }}
-        className="px-8 py-4 rounded-full bg-pink-200 font-bold text-lg
+        className="px-8 py-4  z-10000 rounded-full bg-pink-200 font-bold text-lg
           cursor-pointer select-none transition-all duration-150 hover:bg-muted
           shadow-lg"
       >
@@ -94,7 +93,7 @@ const RunawayButton = ({ onAttempt }: RunawayButtonProps) => {
       </button>
 
       {showMeme && (
-        <div className="fixed inset-0 flex items-center justify-center z-[10000] pointer-events-none">
+        <div className="fixed inset-0 flex items-center justify-center z-10000 pointer-events-none">
           <div className="bg-card rounded-2xl p-4 shadow-2xl border-4 border-primary animate-[heartbeat_0.6s_ease-in-out_infinite]">
             <img
               src={showMeme}
