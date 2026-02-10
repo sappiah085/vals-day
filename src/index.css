@@ -191,7 +191,6 @@
 }
 
 .boombox {
-  width: 420px;
   background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 40%, #111 100%);
   border-radius: 12px;
   border: 2px solid #444;
@@ -201,7 +200,7 @@
   padding: 8px;
   position: relative;
   transition: transform 0.3s ease;
-  @apply scale-90 md:scale-100;
+  @apply min-w-93 w-full max-w-130;
 }
 
 .boombox-handle {
