@@ -1,0 +1,583 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap");
+
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --valentine-pink: 340 82% 52%;
+    --valentine-red: 0 80% 50%;
+    --valentine-gold: 45 90% 55%;
+    --valentine-blush: 340 80% 95%;
+    --heart-glow: 340 100% 70%;
+  }
+}
+
+@layer utilities {
+  .font-script {
+    font-family: "Pacifico", cursive;
+  }
+
+  .text-gradient-love {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--valentine-pink)),
+      hsl(var(--valentine-red)),
+      hsl(var(--valentine-gold))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-valentine-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--valentine-blush)),
+      hsl(var(--valentine-pink) / 0.2),
+      hsl(var(--valentine-blush))
+    );
+  }
+
+  .heart-shadow {
+    filter: drop-shadow(0 0 20px hsl(var(--heart-glow) / 0.5));
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(-3deg);
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.15);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes rain-hearts {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes music-float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-80px) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes reel-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes speaker-vibrate {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes vu-bounce {
+  0%,
+  100% {
+    transform: scaleX(0.3);
+  }
+  50% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes boombox-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-3px) rotate(-0.5deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(0.5deg);
+  }
+}
+
+/* ===== BOOMBOX CSS ===== */
+.boombox-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.boombox-container.boombox-playing .boombox {
+  animation: boombox-bounce 0.5s ease-in-out infinite;
+}
+
+.boombox {
+  width: 420px;
+  background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 40%, #111 100%);
+  border-radius: 12px;
+  border: 2px solid #444;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.boombox-handle {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.handle-bar {
+  width: 180px;
+  height: 8px;
+  background: linear-gradient(180deg, #555, #333);
+  border-radius: 4px 4px 0 0;
+  border: 1px solid #666;
+  border-bottom: none;
+}
+
+.boombox-antenna {
+  position: absolute;
+  top: -50px;
+  right: 60px;
+  width: 3px;
+  height: 50px;
+  background: linear-gradient(180deg, #999, #555);
+  transform: rotate(15deg);
+  transform-origin: bottom center;
+  border-radius: 1px;
+}
+
+.boombox-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  background: linear-gradient(180deg, #333, #222);
+  border-radius: 8px 8px 4px 4px;
+  border: 1px solid #444;
+  margin-bottom: 6px;
+}
+
+.freq-display {
+  flex: 1;
+  background: linear-gradient(180deg, #e8dcc8, #d4c4a8);
+  border-radius: 4px;
+  padding: 4px 8px;
+  border: 1px solid #999;
+}
+
+.freq-label {
+  font-size: 7px;
+  color: #555;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.freq-band {
+  position: relative;
+  height: 16px;
+  background: linear-gradient(180deg, #f0e8d8, #e8dcc8);
+  margin: 2px 0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.freq-marker {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: hsl(var(--valentine-red));
+  transition: left 0.5s ease;
+}
+
+.freq-numbers {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+  font-size: 6px;
+  color: #666;
+  position: relative;
+  top: 2px;
+}
+
+.boombox-knobs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.knob {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(145deg, #666, #333);
+  border-radius: 50%;
+  border: 2px solid #555;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.knob:hover {
+  transform: rotate(45deg);
+}
+
+.knob-line {
+  width: 8px;
+  height: 2px;
+  background: #aaa;
+  border-radius: 1px;
+}
+
+.boombox-middle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+}
+
+.speaker {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+}
+
+.speaker-pulse {
+  animation: speaker-vibrate 0.3s ease-in-out infinite;
+}
+
+.speaker-outer {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #222 0%, #111 50%, #1a1a1a 100%);
+  border-radius: 50%;
+  border: 3px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.speaker-inner {
+  width: 75%;
+  height: 75%;
+  background: repeating-radial-gradient(
+    circle,
+    #1a1a1a 0px,
+    #222 2px,
+    #1a1a1a 4px
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.speaker-cone {
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, #333, #222);
+  border-radius: 50%;
+  border: 1px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.speaker-dome {
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(circle at 30% 30%, #666, #333);
+  border-radius: 50%;
+}
+
+.cassette-deck {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cassette-window {
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+}
+
+.cassette-reel {
+  width: 28px;
+  height: 28px;
+  background: black;
+  border-radius: 50%;
+  border: 2px solid white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reel-spin {
+  animation: reel-rotate 1s linear infinite;
+}
+
+.reel-spoke {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: white;
+}
+
+.cassette-tape {
+  width: 20px;
+  height: 4px;
+  background: #8b6914;
+  border-radius: 1px;
+}
+
+.cassette-label {
+  position: absolute;
+  border-radius: 3px;
+  padding: 2px 6px;
+  text-align: center;
+  font-family: "Pacifico", cursive;
+  @apply bottom-10.5 left-1/2 -translate-x-1/2 w-50 text-lg;
+}
+.bg-card {
+  background-color: hsl(var(--valentine-blush));
+  @apply border-transparent top-1/2 -translate-y-25;
+}
+.song-name {
+  font-size: 8px;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.cassette-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.tape-btn {
+  width: 28px;
+  height: 22px;
+  background: linear-gradient(180deg, #555, #333);
+  border: 1px solid #666;
+  border-radius: 3px;
+  color: #ccc;
+  font-size: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.tape-btn:hover {
+  background: linear-gradient(180deg, #666, #444);
+}
+
+.tape-btn.play-btn.active {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--valentine-pink)),
+    hsl(var(--valentine-red))
+  );
+  color: white;
+  box-shadow: 0 0 8px hsl(var(--valentine-pink) / 0.5);
+}
+
+.boombox-bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  margin-top: 4px;
+}
+
+.vu-meter {
+  flex: 1;
+  background: #222;
+  border-radius: 4px;
+  padding: 4px 6px;
+  border: 1px solid #444;
+}
+
+.vu-label {
+  font-size: 6px;
+  color: #888;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.vu-bar-bg {
+  height: 6px;
+  background: #111;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.vu-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4ade80, #facc15, #ef4444);
+  border-radius: 3px;
+  transition: width 0.15s ease;
+}
+
+.volume-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.vol-label {
+  font-size: 6px;
+  color: #888;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.vol-slider {
+  width: 60px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #444;
+  border-radius: 2px;
+  outline: none;
+}
+
+.vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(145deg, #888, #555);
+  border-radius: 50%;
+  border: 1px solid #999;
+  cursor: pointer;
+}
+
+.music-notes {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.music-note {
+  position: absolute;
+  bottom: 0;
+  color: hsl(var(--valentine-pink));
+  animation: music-float 2s ease-out infinite;
+  font-weight: bold;
+}
+
+@media (max-width: 400px) {
+  .boombox {
+    width: 280px;
+  }
+  .speaker {
+    width: 70px;
+    height: 70px;
+  }
+}
